@@ -1,20 +1,42 @@
-import React, { useContext, useEffect, useReducer, useState } from 'react'
+import React, { useContext, useEffect, useReducer } from 'react'
+
 import reducer from './reducer'
 
-let url = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users'
 const AppContext = React.createContext()
 
 const initialState = {
   loading: false,
-  isLogin: false,
+  loginError: { show: false, msg: '' },
+  isAuthenticated: false,
   user: { email: '', password: '' },
-  data: [],
-  inputType: 'password' 
+  correctDetail: { email: 'demandwork@gmail.com', password: 'computer' },
 }
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  return <AppContext.Provider value={{...state}}>{children}</AppContext.Provider>
+
+ 
+
+  const handleSubmit = (inputEmail, inputPassword) => {
+    if (
+      state.correctDetail.email === inputEmail &&
+      state.correctDetail.password === inputPassword
+    ) {
+      dispatch({
+        type: 'LOGIN',
+        payload: { email: inputEmail, password: inputPassword },
+      })
+     
+    } else {
+      dispatch({ type: 'SET_INPUT_ERROR' })
+    }
+  }
+
+  return (
+    <AppContext.Provider value={{ ...state, handleSubmit }}>
+      {children}
+    </AppContext.Provider>
+  )
 }
 
 export const useGlobalContext = () => {

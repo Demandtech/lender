@@ -65,7 +65,7 @@
       padding: 0 50px;
       @include media('800px') {
         width: 100%;
-        padding: 0
+        padding: 0;
       }
 
       .right-header {
@@ -89,9 +89,6 @@
 
       form {
         width: 440px;
-
-
-
 
         @include media('800px') {
           width: 100%;
@@ -117,6 +114,10 @@
             opacity: 0.6;
           }
         }
+        .error{
+          font-size: 14px;
+          color: rgb(246, 38, 38);
+        }
         button {
           font-weight: 600;
           font-size: 14px;
@@ -131,6 +132,12 @@
           padding: 10px 0;
           border-radius: 5px;
           cursor: pointer;
+
+          &:disabled {
+            background-color: lightcyan;
+            color: #ffffff;
+            cursor: no-drop;
+          }
         }
 
         .forget-password a {

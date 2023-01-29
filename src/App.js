@@ -1,27 +1,22 @@
-import {Login, Dashboard, Users, UserDetail, Navbar} from './pages'
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-import './styles/scss/App.scss';
-import { useEffect, useState } from 'react';
-
-
+import { Login, Dashboard, Users, UserDetail } from './pages'
+import { Navbar, Sidebar } from './components'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import './styles/scss/App.scss'
+import {useState } from 'react'
+import PrivateRoute from './PrivateRoute'
 
 function App() {
-  const [hideNav, setHideNav] = useState(false)
-
- 
-
-  useEffect(props => {
-     const HiddenNavbar = ()=> {
-       setHideNav(true)
-  }
-  },[])
+  const [showNav, setShowNav] = useState(true)
 
   return (
     <Router>
-      {hideNav ? null : <Navbar />}
+      {showNav && <Navbar />}
+      {showNav && <Sidebar />}
       <Routes>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/' element={<Dashboard />} />
+        <Route path='/' element={<Login setShowNav={setShowNav} />} />
+        <Route path= '/dashboard' element={<PrivateRoute>
+          <Dashboard />
+        </PrivateRoute>}/>
         <Route path='/users' element={<Users />} />
         <Route path='users/:id' element={<UserDetail />} />
       </Routes>
@@ -29,4 +24,4 @@ function App() {
   )
 }
 
-export default App;
+export default App

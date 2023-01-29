@@ -1,6 +1,9 @@
 @import './variable.scss';
 @import './mixin.scss';
 @import '../../pages/login/login';
+@import '../../components/navbar/navbar';
+@import '../../components/sidebar/sidebar';
+@import '../../pages/dashboard/dashboard';
 
 *,
 ::before,
