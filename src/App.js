@@ -4,16 +4,17 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './styles/scss/App.scss'
 import {useState } from 'react'
 import PrivateRoute from './PrivateRoute'
+import { useGlobalContext } from './context'
 
 function App() {
-  const [showNav, setShowNav] = useState(true)
+  const {isAuthenticated} = useGlobalContext()
 
   return (
     <Router>
-      {showNav && <Navbar />}
-      {showNav && <Sidebar />}
+      {isAuthenticated && <Navbar />}
+      {isAuthenticated && <Sidebar />}
       <Routes>
-        <Route path='/' element={<Login setShowNav={setShowNav} />} />
+        <Route path='/' element={<Login />} />
         <Route path= '/dashboard' element={<PrivateRoute>
           <Dashboard />
         </PrivateRoute>}/>
