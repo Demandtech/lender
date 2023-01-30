@@ -4,8 +4,13 @@ import { ReactComponent as BellIcon } from '../../assets/svgs/bell-icon.svg'
 import { ReactComponent as AccordIcon } from '../../assets/svgs/accord-icon.svg'
 import avatar from '../../assets/images/image 4.png'
 import logo from '../../assets/images/logo.png'
+import {useLocation} from 'react-router-dom'
 
 function Navbar() {
+  const location  = useLocation()
+  if(location.pathname === '/'){
+    return null
+  }
   return (
     <header>
       <nav className='nav'>

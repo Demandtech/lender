@@ -3,7 +3,9 @@
 @import '../../pages/login/login';
 @import '../../components/navbar/navbar';
 @import '../../components/sidebar/sidebar';
+@import '../../components/info/info';
 @import '../../pages/dashboard/dashboard';
+@import '../../components/userwrapper/user-wrapper';
 
 *,
 ::before,
@@ -14,7 +16,9 @@
 }
 
 body {
-  font-family: 'Avenir Next LT Pro', sans-serif;
+  font-family: 'Avenir Next LT Pro', 'Work Sans';
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&display=swap');
 
 @import url('https://fonts.cdnfonts.com/css/avenir-next-lt-pro');

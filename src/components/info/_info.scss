@@ -1,0 +1,39 @@
+.info-wrapper {
+  display: flex;
+  gap: 26px;
+  margin-bottom: 40px;
+  .card {
+    background: #ffffff;
+    border: 1px solid rgba(33, 63, 125, 0.06);
+    box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 4px;
+    padding: 20px 30px 30px 30px;
+    flex: 1;
+
+    .icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-content: center;
+      border-radius: 50%;
+      margin-bottom: 14px;
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      text-transform: uppercase;
+      color: #545f7d;
+      margin-bottom: 12px;
+    }
+
+    span {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 28px;
+      text-transform: uppercase;
+      color: $secondaryColor;
+    }
+  }
+}

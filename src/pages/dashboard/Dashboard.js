@@ -1,12 +1,16 @@
 import React from 'react'
-import { useGlobalContext } from '../../context'
+//import { useGlobalContext } from '../../context'
+import {Card, UsersWrapper} from '../../components'
 
 function Dashboard() {
-  const { users } = useGlobalContext()
   return (
-    <section className='dashboard'>
+    <main className='dashboard'>
         <h3>Users</h3>
-    </section>
+        <div className="header">
+           <Card />
+           <UsersWrapper />
+        </div>
+    </main>
   )
 }
 

@@ -1,5 +1,5 @@
 import { ReactComponent as UserFriendIcon } from '../../assets/svgs/user-friends.svg'
-import { ReactComponent as UsersIcon } from '../../assets/svgs/users.svg'
+import { ReactComponent as UsersIcon } from '../../assets/svgs/users-icon.svg'
 import { ReactComponent as SackIcon } from '../../assets/svgs/sack.svg'
 import { ReactComponent as HandShakeIcon } from '../../assets/svgs/handshake.svg'
 import { ReactComponent as PiggyBankIcon } from '../../assets/svgs/piggybank.svg'

@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useReducer } from 'react'
+import React, { useContext, useReducer } from 'react'
 
 import reducer from './reducer'
+import mockData from './mockdata'
 
 const AppContext = React.createContext()
 
@@ -10,7 +11,10 @@ const initialState = {
   isAuthenticated: true,
   user: { email: '', password: '' },
   correctDetail: { email: 'demandwork@gmail.com', password: 'computer' },
+  users: mockData
 }
+
+console.log(mockData[1])
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)

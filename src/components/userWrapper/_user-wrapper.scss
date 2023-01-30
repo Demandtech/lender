@@ -1,0 +1,62 @@
+.users {
+  background: #ffffff;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  padding: 30px;
+  
+
+  .headers-wrapper {
+    display: flex;
+    margin-bottom: 30px;
+    .user-header {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      span {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        text-transform: uppercase;
+        color: #545f7d;
+      }
+    }
+  }
+
+  .user-info {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+
+    p {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+      color: #545f7d;
+      text-align: left;
+    }
+
+    .icon {
+      margin-left: auto;
+    }
+  }
+
+  .organization {
+    width: 190px;
+  }
+
+  .username {
+    width: 140px;
+  }
+
+  .email {
+    width: 190px;
+  }
+
+  .number {
+    width: 140px;
+  }
+  .dateJoined {
+    width: 140px;
+  }
+}
