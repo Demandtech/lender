@@ -7,35 +7,35 @@ import { useGlobalContext } from '../../context'
 
 function Info() {
   const {users} = useGlobalContext() 
+ 
 
-  console.log(useGlobalContext())
   const items = [
     {
       id: 1,
       icon: <UsersIcon />,
       label: 'Users',
-      value: users.length,
+      value: users?.length,
       color: '#fce8ff',
     },
     {
       id: 2,
       icon: <ActiveUsersIcon />,
       label: 'Active Users',
-      value: users.length,
+      value: users?.length,
       color: '#eee8ff',
     },
     {
       id: 3,
       icon: <LoanUsersIcon />,
       label: 'Users With loans',
-      value: users.length,
+      value: users?.length,
       color: '#feefec',
     },
     {
       id: 4,
       icon: <SavingUsersIcon />,
       label: 'Users With saving',
-      value: users.length,
+      value: users?.length,
       color: '#ffebf0',
     },
   ]

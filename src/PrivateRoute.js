@@ -5,12 +5,8 @@ import { useGlobalContext } from './context'
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useGlobalContext()
   if (!isAuthenticated) {
-    console.log(isAuthenticated)
     return <Navigate to='/' />
   }
-
-
-  console.log(isAuthenticated)
   return children
 }
 
