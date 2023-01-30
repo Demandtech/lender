@@ -14,7 +14,7 @@ function App() {
       {isAuthenticated && <Navbar />}
       {isAuthenticated && <Sidebar />}
       <Routes>
-        <Route path='/' element={<Login />} />
+         <Route path='/' element={ <Login />} />
         <Route path= '/dashboard' element={<PrivateRoute>
           <Dashboard />
         </PrivateRoute>}/>

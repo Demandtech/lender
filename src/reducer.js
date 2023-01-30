@@ -11,7 +11,7 @@ function reducer(state, action) {
         loginError: { show: false, msg: '' },
       }
   case 'SET_INPUT_ERROR':
-      return {...state, loginError: {show:true, msg: 'Invalid email or password'}}
+      return {...state, loginError: {show:true, msg: 'Invalid email or password'}, isAuthenticated:false}
     default:
     return state
  }

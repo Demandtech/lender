@@ -7,7 +7,7 @@ const AppContext = React.createContext()
 const initialState = {
   loading: false,
   loginError: { show: false, msg: '' },
-  isAuthenticated: false,
+  isAuthenticated: true,
   user: { email: '', password: '' },
   correctDetail: { email: 'demandwork@gmail.com', password: 'computer' },
 }

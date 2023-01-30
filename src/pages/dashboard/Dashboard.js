@@ -2,11 +2,11 @@ import React from 'react'
 import { useGlobalContext } from '../../context'
 
 function Dashboard() {
-  const { user } = useGlobalContext()
+  const { users } = useGlobalContext()
   return (
-    <div className='dashboard'>
-      <h1>DASHBOARD</h1>
-    </div>
+    <section className='dashboard'>
+        <h3>Users</h3>
+    </section>
   )
 }
 
