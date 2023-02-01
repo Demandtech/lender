@@ -41,7 +41,7 @@ const UsersWrapper = () => {
     setPage((oldPage) => {
       let nextPage = oldPage + 1
       if (nextPage > displayUser.length - 1) {
-        nextPage = 0
+        nextPage = displayUser.length - 1
       }
       return nextPage
     })
@@ -51,7 +51,7 @@ const UsersWrapper = () => {
     setPage((oldPage) => {
       let prevPage = oldPage - 1
       if (prevPage < 0) {
-        prevPage = displayUser.length - 1
+        prevPage = 0
       }
 
       return prevPage
