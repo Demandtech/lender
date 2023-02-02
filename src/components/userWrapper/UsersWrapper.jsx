@@ -1,131 +1,122 @@
-import React, { useEffect } from 'react'
-import { ReactComponent as FilterIcon } from '../../assets/svgs/filter-icon.svg'
-import { ReactComponent as MenuIcon } from '../../assets/svgs/menu.svg'
-
-import { ReactComponent as ArrowDownIcon } from '../../assets/svgs/arrow-down.svg'
-import { ReactComponent as PrevIcon } from '../../assets/svgs/prev.svg'
-import { ReactComponent as NextIcon } from '../../assets/svgs/next.svg'
+import React, { useState } from 'react'
+import ReactPaginate from 'react-paginate'
 import { useGlobalContext } from '../../context'
-import { useState } from 'react'
+import { ReactComponent as FilterIcon } from '../../assets/svgs/filter-icon.svg'
+import { ReactComponent as NextIcon } from '../../assets/svgs/next-icon.svg'
+import { ReactComponent as PrevIcon } from '../../assets/svgs/prev-icon.svg'
+import { ReactComponent as MenuIcon } from '../../assets/svgs/menu-icon.svg'
+// import { ReactComponent as ArrowDownIcon } from '../../assets/svgs/arrow-down-icon.svg'
+import { formatDate, formatNumber } from '../../utils'
 
-const UsersWrapper = () => {
+export const Items = ({ currentItems }) => {
+  console.log(formatDate())
+  const th = [
+    'Organization',
+    'username',
+    'email',
+    'phone number',
+    'date joined',
+    'status',
+  ]
+  return (
+    <section>
+      <table className='users-wrapper'>
+        <thead>
+          <tr>
+            {th.map((t, index) => {
+              return (
+                <th key={index}>
+                  <div className='table-header'>
+                    {t}
+                    <FilterIcon />
+                  </div>
+                </th>
+              )
+            })}
+          </tr>
+        </thead>
+        <tbody>
+          {currentItems &&
+            currentItems.map((item, index) => (
+              <tr key={index}>
+                <td>{item.orgName}</td>
+                <td>{item.userName}</td>
+                <td>{item.email}</td>
+                <td>{formatNumber(item.phoneNumber)}</td>
+                <td>{formatDate(item.createdAt)}</td>
+                <td>active</td>
+                <td>
+                  <MenuIcon />
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </section>
+  )
+}
+
+const UsersWrapper = ({ itemsPerPage, setPage }) => {
+  const [itemOffset, setItemOffset] = useState(0)
   const { users } = useGlobalContext()
-  const [page, setPage] = useState(0)
-  const [displayUser, setDisplayUser] = useState([])
+  let items = users
 
-  useEffect(() => {
-    setDisplayUser(users[page])
-  }, [page])
+  const endOffset = itemOffset + itemsPerPage
+  console.log(itemsPerPage)
+  console.log(`Loading items from ${itemOffset} to ${endOffset}`)
+  const currentItems = items.slice(itemOffset, endOffset)
+  console.log(currentItems)
+  const pageCount = Math.ceil(items.length / itemsPerPage)
 
-  const dateIssued = (createdAt) => {
-    const date = new Date(createdAt)
-    const formattedDate = date
-      .toLocaleString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-      })
-      .split('/')
-      .join('-')
-    return formattedDate
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % items.length
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    )
+
+    setItemOffset(newOffset)
   }
 
-  const formattedPhoneNumber = (num) => {
-    const formmatedNumber = num.replace(/[^\d]/g, '').slice(0, 11)
-    return formmatedNumber
-  }
-
-  const nextPage = () => {
-    setPage((oldPage) => {
-      let nextPage = oldPage + 1
-      if (nextPage > displayUser.length - 1) {
-        nextPage = displayUser.length - 1
-      }
-      return nextPage
-    })
-  }
-
-  const prevPage = () => {
-    setPage((oldPage) => {
-      let prevPage = oldPage - 1
-      if (prevPage < 0) {
-        prevPage = 0
-      }
-
-      return prevPage
-    })
+  const handleChange = (e) => {
+    console.log(e.value)
+     setPage(e.target.value)
   }
 
   return (
     <>
-      <section className='users'>
-        <div className='headers-wrapper'>
-          <div className='user-header organization'>
-            <span>organization</span>
-            <FilterIcon />
-          </div>
-          <div className='user-header username'>
-            <span>Username</span>
-            <FilterIcon />
-          </div>
-          <div className='user-header email'>
-            <span>Email</span>
-            <FilterIcon />
-          </div>
-          <div className='user-header number'>
-            <span>phone Number</span>
-            <FilterIcon />
-          </div>
-          <div className='user-header dateJoined'>
-            <span>date joined</span>
-            <FilterIcon />
-          </div>
-          <div className='user-header status'>
-            <span>status</span>
-            <FilterIcon />
-          </div>
+      <Items currentItems={currentItems} />
+      <div className='pag-wrapper'>
+        <div className='select-page'>
+          <p>showing</p>
+          <select onChange={(e)=>handleChange(e)} name='page' id='page'>
+            <option value='10'>10</option>
+            <option value='25'>25</option>
+            <option value='50'>50</option>
+            <option value='75'>75</option>
+            <option value='100'>100</option>
+          </select>
+          <p>Out of {users.length}</p>
         </div>
-        <div className='user-content'>
-          {displayUser.map((item) => {
-            const { orgName, userName, email, id, createdAt, phoneNumber } =
-              item
-            return (
-              <div className='user-info' key={id}>
-                <p className='organization'>{orgName}</p>
-                <p className='username'>{userName}</p>
-                <p className='email'>{email}</p>
-                <p className='number'>{formattedPhoneNumber(phoneNumber)}</p>
-                <p className='dateJoined'>{dateIssued(createdAt)}</p>
-                <p>Active</p>
-                <MenuIcon className='icon' />
+        <div className='pagination'>
+          <ReactPaginate
+            breakLabel='...'
+            nextLabel={
+              <div className='next'>
+                <NextIcon className='next-icon' />
               </div>
-            )
-          })}
+            }
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            pageCount={pageCount}
+            previousLabel={
+              <div className='prev'>
+                <PrevIcon className='prev-icon' />
+              </div>
+            }
+            renderOnZeroPageCount={null}
+          />
         </div>
-      </section>
-      <section className='pagination'>
-        <div className='left'>
-          <p>Showing</p>
-          <div className='pag'>
-            <span>{users.length}</span>
-            <ArrowDownIcon />
-          </div>
-          <p>of {users.flat().length}</p>
-        </div>
-        <div className='right'>
-          <div className='prev-btn'>
-            <PrevIcon onClick={prevPage} />
-          </div>
-          {users.map((_, index) => (
-            <p>{index + 1}</p>
-          ))}
-          <div className='next-btn'>
-            <NextIcon onClick={nextPage} />
-          </div>
-        </div>
-      </section>
+      </div>
     </>
   )
 }

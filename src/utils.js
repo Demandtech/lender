@@ -1,13 +1,27 @@
-const pagination = (users)=> {
-  const itemsPerpage = 10
-  const pages = Math.ceil(users.length / itemsPerpage)
-
-  const newUsers = Array.from({length:pages}, (_, index)=>{
-   const start = index * itemsPerpage
-    console.log(pages)
-   return users.slice(start, start + itemsPerpage)
+const formatDate = (strdate) => {
+  const date = new Date(strdate)
+const formattedDate = date.toLocaleString('default', {
+    month: 'short',
+    day: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
   })
-  return newUsers
+
+  return formattedDate
 }
 
-export default pagination
+const formatNumber = (strNumber)=> {
+ 
+ const formattedNumber = `(${strNumber
+   .replace(/[^\d]/g, '')
+   .slice(1, 4)}) ${strNumber.replace(/[^\d]/g, '').slice(4, 7)}-${strNumber
+   .replace(/[^\d]/g, '')
+   .slice(7, 11)}`
+
+   return formattedNumber
+
+}
+
+
+export {formatDate, formatNumber}

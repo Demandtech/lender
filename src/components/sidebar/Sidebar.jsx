@@ -1,6 +1,6 @@
 import React from 'react'
 import { ReactComponent as BriefCaseIcon } from '../../assets/svgs/briefcase.svg'
-import { ReactComponent as ArrowDownIcon } from '../../assets/svgs/arrow-down.svg'
+import { ReactComponent as ArrowDownIcon } from '../../assets/svgs/arrow-down-icon.svg'
 import { ReactComponent as HomeIcon } from '../../assets/svgs/home.svg'
 import { customer, business, settings } from './sidebarData'
 import { useGlobalContext } from '../../context'

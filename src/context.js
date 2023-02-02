@@ -1,8 +1,8 @@
 import React, { useContext, useReducer } from 'react'
 
 import reducer from './reducer'
-import mockData from './mockdata'
-import pagination from './utils'
+// import pagination from './utils'
+import data from './mockdata'
 
 const AppContext = React.createContext()
 
@@ -11,10 +11,10 @@ const url = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users'
 const initialState = {
   loading: false,
   loginError: { show: false, msg: '' },
-  isAuthenticated: false,
-  user: { email: '', password: '' },
-  correctDetail: { email: 'demandwork@gmail.com', password: 'computer' },
-  users: []
+  isAuthenticated: true,
+  user: { email: '1', password: '1' },
+  correctDetail: { email: '1', password: '1' },
+  users: data
 }
 
 const AppProvider = ({ children }) => {
@@ -30,15 +30,13 @@ const AppProvider = ({ children }) => {
       try{
        const response = await fetch(url)
        const data  = await response.json()
-       const paginatedData = pagination(data)
         dispatch({
           type: 'LOGIN',
-          payload: {data:paginatedData, login:{email: inputEmail, password: inputPassword} },
+          payload: {users:data, login:{email: inputEmail, password: inputPassword} },
         })
 
-       
       }catch(err){
-
+        console.log(err)
       }
      
      
