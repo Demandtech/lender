@@ -11,7 +11,7 @@ const url = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users'
 const initialState = {
   loading: false,
   loginError: { show: false, msg: '' },
-  isAuthenticated: true,
+  isAuthenticated: false,
   user: { email: '1', password: '1' },
   correctDetail: { email: '1', password: '1' },
   users: data
