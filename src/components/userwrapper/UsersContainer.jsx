@@ -5,7 +5,7 @@ import { ReactComponent as NextIcon } from '../../assets/svgs/next-icon.svg'
 import { ReactComponent as PrevIcon } from '../../assets/svgs/prev-icon.svg'
 import { ReactComponent as MenuIcon } from '../../assets/svgs/menu-icon.svg'
 // import { ReactComponent as ArrowDownIcon } from '../../assets/svgs/arrow-down-icon.svg'
-import { formatDate, formatNumber} from '../../utils'
+import { formatDate, formatNumber, shorttenStr} from '../../utils'
 import { useGlobalContext } from '../../context'
 import {Filter} from '../../components'
 
@@ -32,20 +32,19 @@ export const Items = ({ currentItems }) => {
                 <th key={index}>
                   <div className='table-header'>
                     {t}
-                    <FilterIcon  onClick={()=> openFilter()}/>
+                    <FilterIcon onClick={() => openFilter()} />
                   </div>
                 </th>
               )
             })}
-
           </tr>
-           {filter && <Filter />}
+          {filter && <Filter />}
         </thead>
         <tbody>
           {currentItems &&
             currentItems.map((item, index) => (
               <tr key={index}>
-                <td>{item.orgName}</td>
+                <td>{shorttenStr(item.orgName)}</td>
                 <td>{item.userName}</td>
                 <td>{item.email}</td>
                 <td>{formatNumber(item.phoneNumber)}</td>

@@ -24,10 +24,9 @@ const formatNumber = (strNumber)=> {
 }
 
 const shorttenStr = (str) => {
-  return( 
-    str.split('-')
-    )
+ let firstWord = str.split('-')[0]
+ return firstWord.charAt(0).toUpperCase() + firstWord.slice(1)
 }
 
 
-export {formatDate, formatNumber}
+export {formatDate, formatNumber, shorttenStr}

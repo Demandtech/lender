@@ -45,8 +45,6 @@ const AppProvider = ({ children }) => {
   }
 
   const openFilter = () => {
-    console.log('clicked')
-    console.log(state.filter)
     if (state.filter === false) {
       dispatch({ type: 'OPEN_FILTER' })
     }
@@ -55,13 +53,20 @@ const AppProvider = ({ children }) => {
     }
   }
 
-  const orgFilter = (choice)=> {
-    console.log(choice.value)
-    // dispatch({type:'ORG_FILTER', payload:choice.value})
-  }
+  
+
+  
 
   return (
-    <AppContext.Provider value={{ ...state, handleSubmit, openFilter, orgFilter }}>
+    <AppContext.Provider
+      value={{
+        ...state,
+        handleSubmit,
+        openFilter,
+       
+       
+      }}
+    >
       {children}
     </AppContext.Provider>
   )

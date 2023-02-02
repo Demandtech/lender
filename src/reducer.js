@@ -16,10 +16,10 @@ function reducer(state, action) {
       }
     case 'OPEN_FILTER':
       return { ...state, filter: true }
-    case 'CLOSE_FILTER' :
-      return {...state, filter: false}
+    case 'CLOSE_FILTER':
+      return { ...state, filter: false }
     default:
-      return { ...state }
+      return {state}
   }
 
   // throw Error('Unknown action: ' + action.type)

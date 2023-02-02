@@ -3,6 +3,7 @@ table {
   width: 100%;
   padding: 30px 30px 0 30px;
 
+
   thead {
     width: 100%;
     tr {
@@ -33,13 +34,12 @@ table {
       td {
         border-bottom: 1px solid rgba(33, 63, 125, 0.1);
         padding: 20px 0;
-        // font-family: 'Work Sans';
+        font-family: $workSans;
         font-style: normal;
         font-weight: 400;
         font-size: 14px;
         line-height: 16px;
-        /* identical to box height */
-        font-family: $avenir;
+        
         color: #545f7d;
       }
     }

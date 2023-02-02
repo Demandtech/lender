@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useGlobalContext } from '../../context'
 import { useNavigate } from 'react-router-dom'
 
-function Login({ setShowNav }) {
+function Login() {
   const { handleSubmit, isAuthenticated, loginError } = useGlobalContext()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -60,14 +60,14 @@ function Login({ setShowNav }) {
                   type={inputType}
                 />
                 <div className='show' onClick={showPassword}>
-                  <p>{inputType == 'password' ? 'Show' : 'Hide'}</p>
+                  <p>{inputType === 'password' ? 'Show' : 'Hide'}</p>
                 </div>
               </div>
               {loginError.show ? (
                 <p className='error'>{loginError.msg}</p>
               ) : null}
               <div className='forget-password'>
-                <a href='#'>Forgot Password</a>
+                <a href='/'>Forgot Password</a>
               </div>
               <div className=''>
                 <button

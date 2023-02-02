@@ -7,11 +7,7 @@ import Select from 'react-select'
 const Filter = () => {
   const { users } = useGlobalContext()
   const [options, setOptions] = useState([])
-  const optionsTest = [
-    { value: 'chocolate', label: 'Chocolate' },
-    { value: 'strawberry', label: 'Strawberry' },
-    { value: 'vanilla', label: 'Vanilla' },
-  ]
+  const [filters, setFilters] = useState({})
 
   useEffect(() => {
     users.map((user) => {
@@ -24,14 +20,18 @@ const Filter = () => {
   return (
     <div className='filter-wrapper'>
       <OrganizationFilter options={options} />
-      <InputFilter label={'User'} />
-      <InputFilter label= {'Email'} />
+      <InputFilter label={'user'} />
+      <InputFilter label={'email'} />
       <DateFilter />
-      <InputFilter label={'Phone Number'}/>
-      <InputFilter label={'Status'}/>
-      <div className="buttons-wrapper">
-           <Button label={'reset'}/>
-           <Button label={'filter'}/>
+      <InputFilter label={'phone Number'} />
+      <InputFilter label={'status'} />
+      <div className='buttons-wrapper' >
+        <div className='reset-btn'>
+          <Button label={'reset'} />
+        </div>
+        <div className='filter-btn'>
+          <Button label={'filter'} />
+        </div>
       </div>
     </div>
   )
@@ -39,7 +39,6 @@ const Filter = () => {
 
 const OrganizationFilter = ({ options }) => {
   const [selectedOption, setSelectedOption] = useState(null)
-  const { orgFilter } = useGlobalContext()
 
   return (
     <div className='org'>
@@ -53,37 +52,27 @@ const OrganizationFilter = ({ options }) => {
   )
 }
 
-const InputFilter = ({label}) => {
+const InputFilter = ({ label }) => {
+ const {handleChange} = useGlobalContext()
+
   return (
-    <div className={label} style={{marginBottom:'20px'}}>
+    <div className={label} style={{ marginBottom: '20px' }}>
       <label htmlFor='username'>{label}</label>
       <input
         className='username-input'
         type='text'
         id='username'
+        name={label}
         placeholder={label}
+        onChange={(e)=>handleChange(e)}
       />
     </div>
   )
 }
 
-// const EmailFilter = () => {
-//   return (
-//     <div className='email'>
-//       <label htmlFor='email'>Email</label>
-//       <input
-//         className='username-input'
-//         type='text'
-//         id='email'
-//         placeholder='Email'
-//       />
-//     </div>
-//   )
-// }
-
 const DateFilter = () => {
   return (
-    <div className='date' style={{marginBottom:'20px'}}>
+    <div className='date' style={{ marginBottom: '20px' }}>
       <label htmlFor='date'>Date</label>
       <div className='date'>
         <input
@@ -100,13 +89,8 @@ const DateFilter = () => {
   )
 }
 
-
-const Button = ({label})=> {
- return (
-  <button className={label}>
-     {label} 
-  </button>
- )
+const Button = ({ label }) => {
+  return <button className={label}>{label}</button>
 }
 
 export default Filter
