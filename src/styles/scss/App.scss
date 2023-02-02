@@ -2,14 +2,19 @@
 //Reuse
 @import './variable.scss';
 @import './mixin.scss';
-//Pages
+
+//Components
 @import '../../components/navbar/navbar';
 @import '../../components/sidebar/sidebar';
 @import '../../components/info/info';
 @import '../../components/userwrapper/user-container';
-//Components
+@import '../../components/filters/filter';
+
+
+//Pages
 @import '../../pages/login/login';
 @import '../../pages/dashboard/dashboard';
+
 
 *,
 ::before,

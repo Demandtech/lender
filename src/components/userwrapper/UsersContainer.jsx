@@ -67,24 +67,22 @@ const UsersWrapper = ({ itemsPerPage, setPage }) => {
   const { users } = useGlobalContext()
   let items = users
 
+  // const options = users.map
+
+  
+
   const endOffset = itemOffset + itemsPerPage
-  console.log(itemsPerPage)
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`)
   const currentItems = items.slice(itemOffset, endOffset)
-  console.log(currentItems)
   const pageCount = Math.ceil(items.length / itemsPerPage)
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % items.length
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    )
+   
 
     setItemOffset(newOffset)
   }
 
   const handleChange = (e) => {
-    console.log(e.value)
      setPage(e.target.value)
   }
 

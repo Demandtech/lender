@@ -1,0 +1,90 @@
+.filter-wrapper {
+  position: absolute;
+  width: 270px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid rgba(84, 95, 125, 0.14);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+
+  .org {
+    margin-bottom: 20px;
+
+    .css-13cymwt-control {
+      opacity: 0.2;
+      border: 1px solid #213f7d;
+      border-radius: 8px;
+    }
+  }
+
+  .userName,
+  .email {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-family: $workSans;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #545f7d;
+    display: block;
+    padding-bottom: 10px;
+  }
+
+  .username-input {
+    height: 40px;
+    width: 100%;
+    padding-left: 10px;
+    background: #ffffff;
+    opacity: 0.2;
+    border: 1px solid #213f7d;
+    border-radius: 8px;
+  }
+
+  .date {
+    position: relative;
+
+    .calendar {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 20px;
+    }
+  }
+
+  .buttons-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+
+    button {
+      all: unset;
+      height: 40px;
+      width: 98px;
+      text-align: center;
+      text-transform: capitalize;
+    }
+
+    .reset {
+      border: 2px solid;
+      border: 1px solid #545f7d;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 16px;
+      color: #545f7d;
+    }
+    .filter {
+      background: #39cdcc;
+      border: 1px solid #39cdcc;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      line-height: 16px;
+      color: #FFFFFF;
+    }
+  }
+}

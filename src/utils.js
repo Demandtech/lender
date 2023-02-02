@@ -23,5 +23,11 @@ const formatNumber = (strNumber)=> {
 
 }
 
+const shorttenStr = (str) => {
+  return( 
+    str.split('-')
+    )
+}
+
 
 export {formatDate, formatNumber}

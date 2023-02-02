@@ -15,44 +15,53 @@ const initialState = {
   isAuthenticated: false,
   user: { email: '1', password: '1' },
   correctDetail: { email: '1', password: '1' },
-  users: data
+  users: data,
 }
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-
- 
 
   const handleSubmit = async (inputEmail, inputPassword) => {
     if (
       state.correctDetail.email === inputEmail &&
       state.correctDetail.password === inputPassword
     ) {
-      try{
-       const response = await fetch(url)
-       const data  = await response.json()
+      try {
+        const response = await fetch(url)
+        const data = await response.json()
         dispatch({
           type: 'LOGIN',
-          payload: {users:data, login:{email: inputEmail, password: inputPassword} },
+          payload: {
+            users: data,
+            login: { email: inputEmail, password: inputPassword },
+          },
         })
-
-      }catch(err){
+      } catch (err) {
         console.log(err)
       }
-     
-     
     } else {
       dispatch({ type: 'SET_INPUT_ERROR' })
     }
   }
 
-  const openFilter = ()=> {
-  console.log('clicked')
-   return dispatch({type: 'OPEN_FILTER'})
+  const openFilter = () => {
+    console.log('clicked')
+    console.log(state.filter)
+    if (state.filter === false) {
+      dispatch({ type: 'OPEN_FILTER' })
+    }
+    if (state.filter === true) {
+      dispatch({ type: 'CLOSE_FILTER' })
+    }
+  }
+
+  const orgFilter = (choice)=> {
+    console.log(choice.value)
+    // dispatch({type:'ORG_FILTER', payload:choice.value})
   }
 
   return (
-    <AppContext.Provider value={{ ...state, handleSubmit, openFilter}}>
+    <AppContext.Provider value={{ ...state, handleSubmit, openFilter, orgFilter }}>
       {children}
     </AppContext.Provider>
   )
