@@ -6,7 +6,7 @@
 @import '../../components/navbar/navbar';
 @import '../../components/sidebar/sidebar';
 @import '../../components/info/info';
-@import '../../components/userwrapper/userwrapper.scss';
+@import '../../components/userwrapper/user-container';
 //Components
 @import '../../pages/login/login';
 @import '../../pages/dashboard/dashboard';
@@ -20,6 +20,6 @@
 }
 
 body {
-  font-family: 'Avenir Next LT Pro', 'Work Sans';
+  font-family:$avenir, $workSans;
 }
 
