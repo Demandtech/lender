@@ -10,6 +10,7 @@ const url = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users'
 
 const initialState = {
   loading: false,
+  filter: false,
   loginError: { show: false, msg: '' },
   isAuthenticated: false,
   user: { email: '1', password: '1' },
@@ -45,8 +46,13 @@ const AppProvider = ({ children }) => {
     }
   }
 
+  const openFilter = ()=> {
+  console.log('clicked')
+   return dispatch({type: 'OPEN_FILTER'})
+  }
+
   return (
-    <AppContext.Provider value={{ ...state, handleSubmit }}>
+    <AppContext.Provider value={{ ...state, handleSubmit, openFilter}}>
       {children}
     </AppContext.Provider>
   )

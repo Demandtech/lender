@@ -1,15 +1,19 @@
 import React, { useState } from 'react'
 import ReactPaginate from 'react-paginate'
-import { useGlobalContext } from '../../context'
 import { ReactComponent as FilterIcon } from '../../assets/svgs/filter-icon.svg'
 import { ReactComponent as NextIcon } from '../../assets/svgs/next-icon.svg'
 import { ReactComponent as PrevIcon } from '../../assets/svgs/prev-icon.svg'
 import { ReactComponent as MenuIcon } from '../../assets/svgs/menu-icon.svg'
 // import { ReactComponent as ArrowDownIcon } from '../../assets/svgs/arrow-down-icon.svg'
-import { formatDate, formatNumber } from '../../utils'
+import { formatDate, formatNumber} from '../../utils'
+import { useGlobalContext } from '../../context'
+import {Filter} from '../../components'
+
 
 export const Items = ({ currentItems }) => {
-  console.log(formatDate())
+  const{openFilter, filter} = useGlobalContext()
+  
+
   const th = [
     'Organization',
     'username',
@@ -28,12 +32,14 @@ export const Items = ({ currentItems }) => {
                 <th key={index}>
                   <div className='table-header'>
                     {t}
-                    <FilterIcon />
+                    <FilterIcon  onClick={()=> openFilter()}/>
                   </div>
                 </th>
               )
             })}
+
           </tr>
+           {filter && <Filter />}
         </thead>
         <tbody>
           {currentItems &&
