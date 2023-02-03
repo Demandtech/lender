@@ -12,7 +12,7 @@ const initialState = {
   loading: false,
   filter: false,
   loginError: { show: false, msg: '' },
-  isAuthenticated: false,
+  isAuthenticated: true,
   user: { email: '1', password: '1' },
   correctDetail: { email: '1', password: '1' },
   users: data,
@@ -63,8 +63,6 @@ const AppProvider = ({ children }) => {
         ...state,
         handleSubmit,
         openFilter,
-       
-       
       }}
     >
       {children}

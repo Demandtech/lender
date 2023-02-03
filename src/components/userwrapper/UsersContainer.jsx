@@ -23,7 +23,8 @@ export const Items = ({ currentItems }) => {
     'status',
   ]
   return (
-    <section>
+    <section style={{position:'relative'}}>
+      {filter && <Filter />}
       <table className='users-wrapper'>
         <thead>
           <tr>
@@ -38,7 +39,6 @@ export const Items = ({ currentItems }) => {
               )
             })}
           </tr>
-          {filter && <Filter />}
         </thead>
         <tbody>
           {currentItems &&
