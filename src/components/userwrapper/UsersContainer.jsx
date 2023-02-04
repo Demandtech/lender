@@ -7,8 +7,9 @@ import { ReactComponent as MenuIcon } from '../../assets/svgs/menu-icon.svg'
 // import { ReactComponent as ArrowDownIcon } from '../../assets/svgs/arrow-down-icon.svg'
 import { formatDate, formatNumber, shorttenStr } from '../../utils'
 import { useGlobalContext } from '../../context'
-import { Filter } from '../../components'
+import { Filter, Menu } from '../../components'
 import { useNavigate } from 'react-router-dom'
+
 
 export const Items = ({ currentItems }) => {
   const { openFilter, filter } = useGlobalContext()
@@ -56,6 +57,7 @@ export const Items = ({ currentItems }) => {
                     <MenuIcon />
                   </button>
                 </td>
+              <Menu />
               </tr>
             ))}
         </tbody>
