@@ -1,4 +1,5 @@
 import React, { useContext, useReducer } from 'react'
+import { useParams } from 'react-router-dom'
 
 import reducer from './reducer'
 // import pagination from './utils'
@@ -16,11 +17,13 @@ const initialState = {
   user: { email: '1', password: '1' },
   correctDetail: { email: '1', password: '1' },
   users: data,
+  singleUser: {}
 }
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-
+  const {id} = useParams()
+  console.log(id)
   const handleSubmit = async (inputEmail, inputPassword) => {
     if (
       state.correctDetail.email === inputEmail &&
@@ -52,10 +55,17 @@ const AppProvider = ({ children }) => {
       dispatch({ type: 'CLOSE_FILTER' })
     }
   }
-
   
-
-  
+  const FetchSingleUser = async() => {
+    try{
+     dispatch({type:'START_LOADING'})
+     const response = await fetch(`${url}${id}`)
+     const data = await response.json()
+     dispatch({type: 'SINGLE_USER', payload:data})
+    }catch(err){
+      dispatch({type: 'SET_ERROR'})
+    }
+  }
 
   return (
     <AppContext.Provider
