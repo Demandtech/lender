@@ -11,8 +11,8 @@ function App() {
 
   return (
     <Router>
-      {isAuthenticated && <Navbar />}
-      {isAuthenticated && <Sidebar />}
+      <Navbar />
+      <Sidebar />
       <Routes>
         <Route path='/' element={<Login />} />
         <Route
@@ -34,7 +34,7 @@ function App() {
         />
 
         <Route
-          path='users/:id'
+          path='/users/:id'
           element={
             <PrivateRoute>
               <UserDetail />{' '}

@@ -1,8 +1,11 @@
 .dashboard {
   margin-left: 250px;
+  min-height: calc(100vh - 72px);
   background: #fbfbfb;
-  padding: 40px;
+  padding: 40px 20px;
   margin-top: 75px;
+  display: grid;
+  place-content: center;
 
   h3 {
     font-weight: 500;

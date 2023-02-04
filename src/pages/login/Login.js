@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import img from '../../assets/images/login-img.png'
 import logo from '../../assets/images/logo.png'
 import { useState } from 'react'
@@ -10,23 +10,23 @@ function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [inputType, setInputType] = useState('password')
-
   const navigate = useNavigate()
 
   const showPassword = () => {
-    if(password){
+    if (password) {
       if (inputType === 'password') {
-      setInputType('text')
-    } else if(inputType === 'text') {
-      setInputType('password')
+        setInputType('text')
+      } else if (inputType === 'text') {
+        setInputType('password')
+      }
     }
   }
-    
-}
 
-  if (isAuthenticated) {
-    navigate('/dashboard')
-  }
+  useEffect(() => {
+    if (isAuthenticated) {
+      return navigate('/dashboard')
+    }
+  }, [isAuthenticated])
 
   return (
     <main>
@@ -63,9 +63,9 @@ function Login() {
                   <p>{inputType === 'password' ? 'Show' : 'Hide'}</p>
                 </div>
               </div>
-              {loginError.show ? (
+              {/* {loginError.show ? (
                 <p className='error'>{loginError.msg}</p>
-              ) : null}
+              ) : null} */}
               <div className='forget-password'>
                 <a href='/'>Forgot Password</a>
               </div>

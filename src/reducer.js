@@ -1,12 +1,10 @@
 function reducer(state, action) {
   switch (action.type) {
-    case 'LOGIN':
+    case 'SET_LOGIN':
       return {
         ...state,
         isAuthenticated: true,
-        user: action.payload.login,
         loginError: { show: false, msg: '' },
-        users: action.payload.users,
       }
     case 'SET_INPUT_ERROR':
       return {
@@ -18,11 +16,17 @@ function reducer(state, action) {
       return { ...state, filter: true }
     case 'CLOSE_FILTER':
       return { ...state, filter: false }
+    case 'START_USERS_FETCHING':
+      return {...state, loading:true}
+    case 'GET_USER':
+      return {...state, loading:false, users:action.payload}
+    case 'SET_ERROR':
+      return {...state, loading:false, userError:true}
     default:
-      return {state}
+      throw Error('Unknown action: ' + action.type)
   }
-
-  // throw Error('Unknown action: ' + action.type)
+ return state
+   
 }
 
 export default reducer

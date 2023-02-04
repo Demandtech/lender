@@ -3,5 +3,6 @@ import Login from './login/Login'
 import Users from './Users'
 import UserDetail from './UserDetail'
 import { Items } from '../components/userwrapper/UsersContainer'
+import LoadingPage from './loading/LoadingPage'
 
-export { Dashboard, Login, Users, UserDetail, Items }
+export { Dashboard, Login, Users, UserDetail, Items, LoadingPage }

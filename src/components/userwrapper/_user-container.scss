@@ -1,8 +1,7 @@
 table {
   background: #ffffff;
   width: 100%;
-  padding: 30px 30px 0 30px;
-
+  padding: 20px 20px 0 20px;
 
   thead {
     width: 100%;
@@ -39,8 +38,15 @@ table {
         font-weight: 400;
         font-size: 14px;
         line-height: 16px;
-        
+
         color: #545f7d;
+      }
+
+      .status {
+        text-align: center;
+      }
+      .menu-btn {
+        all: unset;
       }
     }
   }

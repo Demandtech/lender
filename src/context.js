@@ -1,8 +1,5 @@
-import React, { useContext, useReducer } from 'react'
-import { useParams } from 'react-router-dom'
-
+import React, { useContext, useEffect, useReducer } from 'react'
 import reducer from './reducer'
-// import pagination from './utils'
 import data from './mockdata'
 
 const AppContext = React.createContext()
@@ -13,38 +10,21 @@ const initialState = {
   loading: false,
   filter: false,
   loginError: { show: false, msg: '' },
-  isAuthenticated: true,
+  userError: false,
+  isAuthenticated: false,
   user: { email: '1', password: '1' },
   correctDetail: { email: '1', password: '1' },
-  users: data,
-  singleUser: {}
+  users:[],
+  singleUser: {},
 }
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
-  const {id} = useParams()
-  console.log(id)
-  const handleSubmit = async (inputEmail, inputPassword) => {
-    if (
-      state.correctDetail.email === inputEmail &&
-      state.correctDetail.password === inputPassword
-    ) {
-      try {
-        const response = await fetch(url)
-        const data = await response.json()
-        dispatch({
-          type: 'LOGIN',
-          payload: {
-            users: data,
-            login: { email: inputEmail, password: inputPassword },
-          },
-        })
-      } catch (err) {
-        console.log(err)
-      }
-    } else {
-      dispatch({ type: 'SET_INPUT_ERROR' })
-    }
+
+  const handleSubmit = (inputEmail, inputPassword) => {
+     if(state.correctDetail.email === inputEmail && state.correctDetail.password === inputPassword){
+      dispatch({type: 'SET_LOGIN'})
+     }
   }
 
   const openFilter = () => {
@@ -55,17 +35,33 @@ const AppProvider = ({ children }) => {
       dispatch({ type: 'CLOSE_FILTER' })
     }
   }
-  
-  const FetchSingleUser = async() => {
+
+  const fetchUsers = async (url)=> {
+    dispatch({type:'START_USERS_FETCHING'})
     try{
-     dispatch({type:'START_LOADING'})
-     const response = await fetch(`${url}${id}`)
-     const data = await response.json()
-     dispatch({type: 'SINGLE_USER', payload:data})
+      const response =  await fetch(url);
+      const users = await response.json()
+      dispatch({type:"GET_USER", payload:users})
     }catch(err){
-      dispatch({type: 'SET_ERROR'})
+       dispatch({type: 'SET_ERROR'})
     }
   }
+
+  const FetchSingleUser = async (url) => {
+    dispatch({ type: 'START_SINGLE_USER_FETCHING' })
+    try {
+      const response = await fetch(`${url}`)
+      const user = await response.json()
+      console.log(data)
+      dispatch({ type: 'GET_SINGLE_USER', payload:user })
+    } catch (err) {
+      dispatch({ type: 'SET_ERROR' })
+    }
+  }
+
+  useEffect(()=>{
+    fetchUsers(url)
+  }, [state.isAuthenticated])
 
   return (
     <AppContext.Provider
@@ -73,6 +69,7 @@ const AppProvider = ({ children }) => {
         ...state,
         handleSubmit,
         openFilter,
+        FetchSingleUser,
       }}
     >
       {children}

@@ -5,14 +5,14 @@ import { ReactComponent as NextIcon } from '../../assets/svgs/next-icon.svg'
 import { ReactComponent as PrevIcon } from '../../assets/svgs/prev-icon.svg'
 import { ReactComponent as MenuIcon } from '../../assets/svgs/menu-icon.svg'
 // import { ReactComponent as ArrowDownIcon } from '../../assets/svgs/arrow-down-icon.svg'
-import { formatDate, formatNumber, shorttenStr} from '../../utils'
+import { formatDate, formatNumber, shorttenStr } from '../../utils'
 import { useGlobalContext } from '../../context'
-import {Filter} from '../../components'
-
+import { Filter } from '../../components'
+import { useNavigate } from 'react-router-dom'
 
 export const Items = ({ currentItems }) => {
-  const{openFilter, filter} = useGlobalContext()
-  
+  const { openFilter, filter } = useGlobalContext()
+  const navigate = useNavigate()
 
   const th = [
     'Organization',
@@ -23,7 +23,7 @@ export const Items = ({ currentItems }) => {
     'status',
   ]
   return (
-    <section style={{position:'relative'}}>
+    <section style={{ position: 'relative' }}>
       {filter && <Filter />}
       <table className='users-wrapper'>
         <thead>
@@ -49,9 +49,12 @@ export const Items = ({ currentItems }) => {
                 <td>{item.email}</td>
                 <td>{formatNumber(item.phoneNumber)}</td>
                 <td>{formatDate(item.createdAt)}</td>
-                <td>active</td>
+                <td
+                className='status'>active</td>
                 <td>
-                  <MenuIcon />
+                  <button className='menu-btn'>
+                    <MenuIcon />
+                  </button>
                 </td>
               </tr>
             ))}
@@ -68,21 +71,18 @@ const UsersWrapper = ({ itemsPerPage, setPage }) => {
 
   // const options = users.map
 
-  
-
   const endOffset = itemOffset + itemsPerPage
   const currentItems = items.slice(itemOffset, endOffset)
   const pageCount = Math.ceil(items.length / itemsPerPage)
 
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % items.length
-   
 
     setItemOffset(newOffset)
   }
 
   const handleChange = (e) => {
-     setPage(e.target.value)
+    setPage(e.target.value)
   }
 
   return (
@@ -91,7 +91,7 @@ const UsersWrapper = ({ itemsPerPage, setPage }) => {
       <div className='pag-wrapper'>
         <div className='select-page'>
           <p>showing</p>
-          <select onChange={(e)=>handleChange(e)} name='page' id='page'>
+          <select onChange={(e) => handleChange(e)} name='page' id='page'>
             <option value='10'>10</option>
             <option value='25'>25</option>
             <option value='50'>50</option>
