@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useGlobalContext } from '../../context'
 import { Card, UsersWrapper } from '../../components'
-import LoadingPage from '../loading/LoadingPage'
+import {LoadingPage} from '../../pages'
 
 function Dashboard() {
   const [page, setPage] = useState(10)

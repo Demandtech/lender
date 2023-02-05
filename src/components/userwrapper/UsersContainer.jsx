@@ -4,64 +4,48 @@ import { ReactComponent as FilterIcon } from '../../assets/svgs/filter-icon.svg'
 import { ReactComponent as NextIcon } from '../../assets/svgs/next-icon.svg'
 import { ReactComponent as PrevIcon } from '../../assets/svgs/prev-icon.svg'
 import { ReactComponent as MenuIcon } from '../../assets/svgs/menu-icon.svg'
-// import { ReactComponent as ArrowDownIcon } from '../../assets/svgs/arrow-down-icon.svg'
 import { formatDate, formatNumber, shorttenStr } from '../../utils'
 import { useGlobalContext } from '../../context'
 import { Filter, Menu } from '../../components'
-import { useNavigate } from 'react-router-dom'
-
 
 export const Items = ({ currentItems }) => {
   const { openFilter, filter } = useGlobalContext()
-  const navigate = useNavigate()
-
-  const th = [
-    'Organization',
-    'username',
-    'email',
-    'phone number',
-    'date joined',
-    'status',
-  ]
   return (
     <section style={{ position: 'relative' }}>
       {filter && <Filter />}
-      <table className='users-wrapper'>
-        <thead>
-          <tr>
-            {th.map((t, index) => {
-              return (
-                <th key={index}>
-                  <div className='table-header'>
-                    {t}
-                    <FilterIcon onClick={() => openFilter()} />
-                  </div>
-                </th>
-              )
-            })}
-          </tr>
-        </thead>
-        <tbody>
-          {currentItems &&
-            currentItems.map((item, index) => (
-              <tr key={index}>
-                <td>{shorttenStr(item.orgName)}</td>
-                <td>{item.userName}</td>
-                <td>{item.email}</td>
-                <td>{formatNumber(item.phoneNumber)}</td>
-                <td>{formatDate(item.createdAt)}</td>
-                <td
-                className='status'>active</td>
-                <td>
-                  <button className='menu-btn'>
-                    <MenuIcon />
-                  </button>
-                </td>
-              <Menu />
-              </tr>
-            ))}
-        </tbody>
-      </table>
+      <div className='users-wrapper'>
+        <div className='users-wrapper-header'>
+          <div className='table-header organization-header'>
+            <span>Organization</span>
+            <FilterIcon onClick={() => openFilter()} />
+          </div>
+          <div className='table-header'>
+            <span>username</span>
+            <FilterIcon onClick={() => openFilter()} />
+          </div>
+          <div className='table-header'>
+            <span>email</span>
+            <FilterIcon onClick={() => openFilter()} />
+          </div>
+          <div className='table-header'>
+            <span>phone number</span>
+            <FilterIcon onClick={() => openFilter()} />
+          </div>
+          <div className='table-header'>
+            <span>date joined</span>
+            <FilterIcon onClick={() => openFilter()} />
+          </div>
+          <div className='table-header'>
+            <span>status</span>
+            <FilterIcon onClick={() => openFilter()} />
+          </div>
+        </div>
+        {currentItems
+          ? currentItems.map((item) => {
+              return <User {...item} key={item.id} />
+            })
+          : null}
+      </div>
     </section>
   )
 }
@@ -123,6 +107,38 @@ const UsersWrapper = ({ itemsPerPage, setPage }) => {
         </div>
       </div>
     </>
+  )
+}
+
+const User = ({ orgName, userName, phoneNumber, createdAt, email, id }) => {
+  const [openMenu, setOpenMenu] = useState(null)
+
+  const handleMenu = () => {
+    if (openMenu) {
+      setOpenMenu(false)
+    } else {
+      setOpenMenu(true)
+    }
+  }
+  return (
+    <div className='users-wrapper-content'>
+      <div className='content-wrapper'>
+        <div className='content organization-content'>
+          {shorttenStr(orgName)}
+        </div>
+        <div className='content'>{userName}</div>
+        <div className='content'>{email}</div>
+        <div className='content'>{formatNumber(phoneNumber)}</div>
+        <div className='content'>{formatDate(createdAt)}</div>
+        <div className='content status'>active</div>
+        <div className='content'>
+          <button className='menu-btn' id={id}>
+            <MenuIcon onClick={handleMenu} />
+          </button>
+          {openMenu && <Menu id={id} />}
+        </div>
+      </div>
+    </div>
   )
 }
 

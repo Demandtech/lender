@@ -1,54 +1,94 @@
-table {
+.users-wrapper {
   background: #ffffff;
   width: 100%;
   padding: 20px 20px 0 20px;
   z-index: -100;
 
-  thead {
-    width: 100%;
-    tr {
-      padding-bottom: 35px;
+  .users-wrapper-header {
+    display: flex;
+    padding-bottom: 35px;
 
-      th {
-        text-align: left;
+    .table-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 14px;
+      text-transform: uppercase;
+      font-family: $workSans;
+      color: $lightGrey;
 
-        .table-header {
-          display: flex;
-          align-items: flex-start;
-          gap: 10px;
-          padding-bottom: 30px;
-          font-size: 12px;
-          line-height: 14px;
-          color: $secondaryColor;
-          text-transform: uppercase;
-          font-weight: 600;
-          font-family: 'Work Sans';
-        }
+      &:nth-child(1) {
+        min-width: 140px;
+      }
+
+      &:nth-child(2) {
+        min-width: 150px;
+      }
+
+      &:nth-child(3) {
+        min-width: 250px;
+      }
+      &:nth-child(4) {
+        min-width: 125px;
+      }
+      &:nth-child(5) {
+        min-width: 170px;
+      }
+      &:nth-child(6) {
+        min-width: 100px;
       }
     }
   }
 
-  tbody {
-    width: 100%;
-    tr {
-      td {
-        border-bottom: 1px solid rgba(33, 63, 125, 0.1);
-        padding: 20px 0;
-        font-family: $workSans;
-        font-style: normal;
-        font-weight: 400;
-        font-size: 14px;
-        line-height: 16px;
+  .content-wrapper {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(33, 63, 125, 0.1);
+    position: relative;
+    .content {
+      font-family: 'Work Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 16px;
+      color: $lightGrey;
 
-        color: #545f7d;
+      &:nth-child(1) {
+        min-width: 140px;
       }
 
-      .status {
+      &:nth-child(2) {
+        min-width: 140px;
+      }
+
+      &:nth-child(3) {
+        min-width: 250px;
+      }
+
+      &:nth-child(4) {
+        min-width: 125px;
+      }
+      &:nth-child(5) {
+        min-width: 165px;
+      }
+
+      &:nth-child(6) {
+        min-width: 100px;
         text-align: center;
       }
-      .menu-btn {
-        all: unset;
+
+      &:nth-last-child(1) {
+        margin-left: auto;
       }
+    }
+
+    &:nth-last-child(1) {
+      border: none;
+    }
+    .menu-btn {
+      all: unset;
     }
   }
 }
@@ -89,7 +129,7 @@ table {
       font-weight: 400;
       font-size: 16px;
       line-height: 19px;
-      color: #545f7d;
+      color: $lightGrey;
       opacity: 0.6;
     }
 

@@ -9,9 +9,10 @@ const url = 'https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users'
 const initialState = {
   loading: false,
   filter: false,
+  isMenuOpen:false,
   loginError: { show: false, msg: '' },
   userError: false,
-  isAuthenticated: false,
+  isAuthenticated: true,
   user: { email: '1', password: '1' },
   correctDetail: { email: '1', password: '1' },
   users:[],
@@ -52,10 +53,18 @@ const AppProvider = ({ children }) => {
     try {
       const response = await fetch(`${url}`)
       const user = await response.json()
-      console.log(data)
       dispatch({ type: 'GET_SINGLE_USER', payload:user })
     } catch (err) {
+      console.log(err)
       dispatch({ type: 'SET_ERROR' })
+    }
+  }
+
+  const handleMenu = ()=> {
+    if(state.isMenuOpen === false){
+      dispatch({type: 'OPEN_MENU'})
+    }else{
+      dispatch({type:'CLOSE_MENU'})
     }
   }
 
@@ -70,6 +79,7 @@ const AppProvider = ({ children }) => {
         handleSubmit,
         openFilter,
         FetchSingleUser,
+        handleMenu
       }}
     >
       {children}

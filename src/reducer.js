@@ -14,6 +14,10 @@ function reducer(state, action) {
       }
     case 'OPEN_FILTER':
       return { ...state, filter: true }
+    case 'OPEN_MENU':
+      return {...state, isMenuOpen: true}
+    case 'CLOSE_MENU':
+      return {...state, isMenuOpen:false}
     case 'CLOSE_FILTER':
       return { ...state, filter: false }
     case 'START_USERS_FETCHING':
@@ -23,6 +27,10 @@ function reducer(state, action) {
     case 'SET_ERROR':
       return {...state, loading:false, userError:true}
     default:
+    case 'START_SINGLE_USER_FETCHING':
+      return{...state, loading: true}
+    case 'GET_SINGLE_USER':
+    return { ...state, loading: false, singleUser:action.payload }
       throw Error('Unknown action: ' + action.type)
   }
  return state

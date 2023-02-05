@@ -5,11 +5,20 @@
   border-radius: 4px;
   position: absolute;
   right: 0;
-  padding: 20px;
-  height: 300px;
-  button {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  button,
+  a {
     all: unset;
-    display: block;
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    gap: 10px;
+    font-family: 'Work Sans';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
   }
 }

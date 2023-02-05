@@ -28,5 +28,13 @@ const shorttenStr = (str) => {
  return firstWord.charAt(0).toUpperCase() + firstWord.slice(1)
 }
 
+const formatPrice = (number) => {
+  const newNumber = Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+  }).format(number)
+  return newNumber
+}
 
-export {formatDate, formatNumber, shorttenStr}
+
+export {formatDate, formatNumber, formatPrice, shorttenStr}
