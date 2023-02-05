@@ -128,7 +128,7 @@ const User = ({ orgName, userName, phoneNumber, createdAt, email, id }) => {
         </div>
         <div className='content'>{userName}</div>
         <div className='content'>{email}</div>
-        <div className='content'>{formatNumber(phoneNumber)}</div>
+        <div className='content'>{phoneNumber}</div>
         <div className='content'>{formatDate(createdAt)}</div>
         <div className='content status'>active</div>
         <div className='content'>

@@ -63,8 +63,8 @@
     border: 1px solid rgba(33, 63, 125, 0.06);
     box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
     border-radius: 4px;
-
     padding: 30px 30px 0 30px;
+    margin-bottom: 20px;
 
     .header-wrapper {
       display: flex;
@@ -143,6 +143,54 @@
       .active {
         color: $secondaryBg;
         border-bottom: 2px solid $secondaryBg;
+      }
+    }
+  }
+}
+
+.informations-wrapper {
+  background: #ffffff;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  padding: 30px;
+
+  article {
+    border-bottom: 1px solid #21407d21;
+    h3 {
+      font-family: 'Work Sans';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      color: $secondaryColor;
+      padding-bottom: 30px;
+    }
+    .content {
+      padding-bottom: 30px;
+      .info {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 30px;
+        div {
+         
+
+          span {
+            text-transform: uppercase;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 14px;
+            text-transform: uppercase;
+            color: $lightGrey;
+            margin-bottom: 10px;
+          }
+          p {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            color: $lightGrey;
+          }
+        }
       }
     }
   }
